@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="steelblue">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Edit Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <form [formGroup]="menuForm">
+    <ion-item >
+      <ion-label floating>Menu Name</ion-label>
+      <ion-textarea formControlName="menuname" > 
+        <!-- readonly -->
+        <!-- <ion-option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</ion-option> -->
+      </ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Menu Price</ion-label>
+      <ion-textarea formControlName="menuprice" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Menu Description</ion-label>
+      <ion-textarea formControlName="menudesc" rows="5"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+        <ion-label floating>Time</ion-label>
+        <ion-textarea formControlName="time"></ion-textarea>
+      </ion-item>
+
+        <ion-grid >
+          <ion-row>
+              <ion-col>
+                <button ion-button icon-left block outline type="button" (click)="takePhoto()">
+                  <ion-icon name="camera"></ion-icon>CAMERA
+                </button>
+              </ion-col>
+            </ion-row>
+           
+            <ion-row>
+              <ion-col>
+                <button ion-button icon-left block outline type="button" (click)="selectPicture()">
+                  <ion-icon name="camera"></ion-icon>GALLERY
+                </button>
+              </ion-col>
+            </ion-row>
+  
+            <br>
+            <ion-row *ngIf="imageIsSet" class="img-container">
+              <ion-col>
+                <img class="img" [src]="getTrustImg(imageurl)">
+                <img class="img" [src]="imageUrl">
+              </ion-col>
+            </ion-row>
+            <!-- <img class="image" [src]="item.imageUrl"> -->
+        </ion-grid>
+        </form>
+  <div padding>
+  <button ion-button round block color="steelblue" class="btn" type="submit" (click)="update()">SUBMIT</button>
+  </div>
+</ion-content>
+      
+  

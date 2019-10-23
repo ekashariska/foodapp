@@ -1,0 +1,47 @@
+<ion-header>
+    
+      <ion-navbar color = "steelblue">
+        <ion-title text-center>Login</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content scroll="false"  class="transparent-header" >
+  
+  <div class="header-image"></div>
+  
+  <div class="main-content">
+  
+  <form #f="ngForm" (ngSubmit)="Signin(f)"  [formGroup]="signinForm">
+    <div class="form" padding>
+      <br>
+      
+      <ion-item>
+        <ion-label color="light-gray-darken"><ion-icon name="mail"></ion-icon></ion-label>
+        <ion-input type="email" ngModel name="email" formControlName="email" placeholder="EMAIL" ></ion-input>
+      </ion-item>
+  
+      <br>
+
+      <ion-item>
+          <ion-label color="light-gray-darken"><ion-icon name="lock"></ion-icon></ion-label>
+          <ion-input type="password" ngModel  id="password" name="password"  placeholder="PASSWORD"formControlName="password" ></ion-input>
+        </ion-item>
+  
+      <br>
+      <br>
+      <br>
+      <button  ion-button  color="steelblue" class="group" type="submit" round block [disabled]="!f.valid">SIGNIN</button>
+      <br>
+      <br>
+      <br>
+      <a class="here">Forgot Password? Click <b (click)="onPasswordReset()">Here</b></a>
+      <br>
+    <br>
+    <br>
+    <a class="new">Do not have an account?<b (click)="signup()" >Sign up now!</b></a>
+   <br>
+  </div>
+    </form>
+  </div>
+  </ion-content>
+  

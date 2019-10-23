@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar color="steelblue">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>
+      Your Cart
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="isEmptyCart" class="empty-cart">
+    <div class="empty-results">
+      <h3 text-center>
+          <ion-icon name="cart"></ion-icon>
+      </h3>
+      <p text-center>
+        Your cart is empty
+      </p>
+    </div>
+  </div>
+  <div *ngIf="!isEmptyCart" class="cart-itm-wrap">
+
+    <ion-card >
+      <ion-card-content *ngFor="let itm of cartMenu">
+        <ion-row>
+          <ion-col col-7>
+            <h3 style="margin: 7px" text-left>{{itm.name}}</h3>
+
+            <div class="itm-footer">
+              <span (click)="removeItem(itm)" class="remove">
+                Remove
+              </span>
+              <span class="price">
+                {{itm.totalPrice | currency:'RM':true}}
+              </span>
+            </div>
+
+
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-avatar>
+                <img style="float: right" src="{{itm.thumb}}">
+              </ion-avatar>
+            </ion-item>
+            <p style="color:#333" text-right>
+              Qty: {{itm.count}}
+            </p>
+          </ion-col>
+
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="!isEmptyCart" class="single-footer">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="addCart" (click)="checkOut()">
+        <button ion-button round block color="steelblue">
+          {{totalAmount | currency:'RM':true}} &nbsp; &nbsp; Checkout
+        </button>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>

@@ -1,0 +1,33 @@
+page-editprofile {
+  .container {
+    position: relative;
+    text-align: center;
+    color: rgb(53, 52, 52);
+    border: 1px solid rgb(197, 195, 195);
+    margin: auto;
+    width: 40%;
+    img {
+      text-align: center;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 150px;
+      border-radius: 50%;
+      transform: scale(1);
+      transition: all 0.9s ease 0s;
+      // border: 1px solid rgb(41, 40, 40);
+    }
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: -2px;
+    left: 1px;
+  }
+
+  .bottom-right {
+    position: absolute;
+    bottom: -2px;
+    right: 1px;
+  }
+}

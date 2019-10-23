@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar color="steelblue">
+    <ion-title text-center>
+      Home
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  <!-- *ngFor="prod of products; let i = index" (click)="editProduct(i)" -->
+  <ion-card *ngFor="let item of menu" (click)="viewmenu(item)">
+    <ion-item>
+      <ion-avatar item-start>
+        <!-- <img [src]="card.avatarImageUrl" (click)="avatarTapped(card)"> -->
+      </ion-avatar>
+      <h2><b>{{item.menuname}}</b></h2>
+      <!-- <p>{{card.date}}</p> -->
+    </ion-item>
+    <img class="image" [src]="item.imageurl">
+    <ion-card-content>
+      <span>Price: {{item.menuprice}}</span>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        Quantity available: {{item.quantity}}
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{item.time}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>

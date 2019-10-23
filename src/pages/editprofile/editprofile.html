@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="steelblue">
+    <ion-title text-center>Edit Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="container">
+    <img src="{{avatar}}">
+    
+    <div *ngIf="!browser">
+    <div class="bottom-left" (click)="openAlbum()">
+        <ion-icon color="primary" class="bottom-left" icon-end ios="ios-folder-open" md="md-folder-open" style="zoom:2.0;"></ion-icon>
+      </div>
+      <div class="bottom-center" (click)="openCamera()">
+        <ion-icon color="primary" class="bottom-right" icon-end ios="ios-camera" md="md-camera" style="zoom:2.0;"></ion-icon>
+      </div>
+    </div>  
+      <!-- <div *ngIf="browser">
+        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+    </div> -->
+
+  </div>
+
+    <ion-list no lines>
+      <ion-item>
+        <ion-icon item-start name="mail"></ion-icon>
+        <p>Email</p>
+        <h2><b>{{user.email}}</b></h2>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon item-start name="person"></ion-icon>
+        <ion-label stacked>Username</ion-label> 
+        <ion-input [(ngModel)]="user.FullName"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon item-start name="pin"></ion-icon>
+        <ion-label stacked>Address</ion-label>
+        <ion-input [(ngModel)]="user.address"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon item-start name="call"></ion-icon>
+        <ion-label stacked>Phone</ion-label>
+        <ion-input [(ngModel)]="user.phoneNumber"></ion-input>
+      </ion-item>
+    </ion-list>
+
+  <div padding>
+  <button ion-button round block color="steelblue" class="btn" type="submit" (click)="updateProfile()">SUBMIT</button>
+  </div>
+</ion-content>

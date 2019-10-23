@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar color="steelblue">
+    <ion-title text-center>Sign Up Form</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="authForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-mail" md="md-mail"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input id="email" type="email" [formControl]="email" placeholder="Email" name="email" [(ngModel)]="newuser.email"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="email.errors &&  email.touched">
+        <div class="error" *ngIf="email.errors && email.touched">EMAIL IS invalid</div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-person" md="md-person"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input id="name" type="text" [formControl]="name" placeholder="Full Name" name="name" [(ngModel)]="newuser.name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-unlock" md="md-unlock"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input id="password" [formControl]="password" type="{{passwordtype}}"  placeholder="PASSWORD" name="password" [(ngModel)]="newuser.password"></ion-input>
+        <button ion-button clear type="button" class="password-toggle" color="light-gray-darken" item-right (click)="managePassword()"><ion-icon id="password-icon" name="{{passeye}}"></ion-icon></button>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-unlock" md="md-unlock"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input id="cnfpass" [formControl]="cnfpass" type="{{cnfpasswordtype}}"  placeholder="CONFIRM_PASSWORD" name="cnfpass" [(ngModel)]="newuser.cnfpassword"></ion-input>
+        <button ion-button class="password-toggle" type="button" item-right (click)="managecnfPassword()"><ion-icon id="password-icon" name="{{cnfpasseye}}"></ion-icon></button>
+      </ion-item>
+
+
+      <br>
+      <ion-item>
+        <ion-label>Register as a?</ion-label>
+        <ion-select [formControl]="level" [(ngModel)]="newuser.level" (ngModelChange)="optionsFn();">
+          <ion-option value="buyer">Buyer</ion-option>
+          <ion-option value="seller">Seller</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-call" md="md-call"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input id="phonenumber" [formControl]="phonenumber" type="number" placeholder="Phone Number" name="phonenumber" [(ngModel)]="newuser.phonenumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label><ion-icon ios="ios-home" md="md-home"></ion-icon></ion-label>
+        <ion-label color="danger">*</ion-label>
+        <ion-input [formControl]="address" type="text" placeholder="Address" name="address" [(ngModel)]="newuser.address"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <br>
+    <p  ion-text class="invalidTxt" color="danger">* MANDATORY</p>
+
+    <br>
+      <ion-row>
+        <ion-col style="text-align: center">
+          <button ion-button round block color="steelblue" class="btn" type="submit"
+            (click)="doSignup()">Signup</button>
+        </ion-col>
+      </ion-row>
+      <a class="var">Do you have an account?<b (click)="login()">Login here.</b></a>
+
+  </form>
+</ion-content>

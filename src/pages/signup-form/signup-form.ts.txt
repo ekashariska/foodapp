@@ -1,0 +1,209 @@
+import { Component, OnInit } from '@angular/core';
+import { NavController, NavParams, LoadingController, ToastController, Platform } from 'ionic-angular';
+import { FormGroup, Validators, FormBuilder, AbstractControl, NgForm } from '@angular/forms';
+import { UsercrudProvider } from '../../providers/usercrud/usercrud';
+import { TabsPage } from '../tabs/tabs';
+import { LoginPage } from '../login/login';
+import { Tab1Page } from '../tab1/tab1';
+import { CameraOptions, Camera } from '@ionic-native/camera';
+import { storage } from 'firebase';
+
+
+
+
+@Component({
+  selector: 'page-signup-form',
+  templateUrl: 'signup-form.html',
+})
+export class SignupFormPage implements OnInit {
+  private win: any = window;
+  newuser = { email:'', FullName:'',password:'', phoneNumber:'', level:'',address:'', imageUrl: ''}
+  email:AbstractControl;
+  FullName:AbstractControl;
+  password:AbstractControl;
+  phoneNumber:AbstractControl;
+  level:AbstractControl;
+  address:AbstractControl;
+  imageUrl:any = "null";
+  authForm : FormGroup;
+  // rootPage: typeof TabsPage;
+  rootPage:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public loadingCtrl: LoadingController, public toastCtrl : ToastController,
+              public formBuilder: FormBuilder, public userService: UsercrudProvider,private camera: Camera, ) {
+               
+  }
+ 
+  newlevel
+  options =  [
+          {
+           "level" : "buyer",
+          },
+          {
+          "level" : "seller",
+          }
+        ];
+
+  public optionsFn(item): void { 
+      console.log(this.newuser.level);
+      item = this.newuser.level;
+      this.newlevel = item;
+        }
+
+  ngOnInit(){
+    this.initialiazeForm();
+  }
+
+  initialiazeForm(){
+    this.authForm = this.formBuilder.group({
+      'email' : [null, Validators.compose([Validators.required])],
+      'FullName': [null, Validators.compose([Validators.required])],
+      'password': [null, Validators.compose([Validators.required])],
+      'phoneNumber': [null, Validators.compose([Validators.required])],
+      'address': [null, Validators.compose([Validators.required])],
+      'level': [null],
+      'imageUrl': [this.imageUrl],
+
+   
+
+    });
+    this.email = this.authForm.controls['email'];
+    this.FullName = this.authForm.controls['FullName'];
+    this.password = this.authForm.controls['password'];
+    this.phoneNumber = this.authForm.controls['phoneNumber'];
+    this.address = this.authForm.controls['address'];
+    this.level = this.authForm.controls['level']
+    this.imageUrl = this.authForm.controls['imageUrl']
+
+
+  }
+
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
+ 
+  hideShowPassword() {
+      this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+      this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
+
+  doSignup(form: NgForm){
+
+    let toaster = this.toastCtrl.create({
+      message: 'Error Code ',
+      duration:3000,
+      position:'bottom'
+    });
+    if(this.newuser.email == '' || this.newuser.password == '' ){
+      toaster.setMessage('All field are Required!');
+      toaster.present();
+    }
+
+    else 
+    if(this.newuser.password.length < 3){
+      toaster.setMessage('Password is Not Strong');
+      toaster.present(); 
+    }
+
+     if(this.newuser.email && this.newuser.password){
+
+      let loader = this.loadingCtrl.create({
+        content:'Please wait'
+      })
+      // loader.present();
+        this.userService.adduser(this.newuser).then((res)=>{
+          loader.dismiss();
+          if(res){
+            // this.navCtrl.setRoot(TabsPage);
+            if(this.newuser.level=="seller"){
+              this.navCtrl.setRoot(Tab1Page);
+            }
+            else{
+              this.navCtrl.push(TabsPage);
+            }
+          }
+          // else{
+          //   alert('Error' + res);
+          // }
+        
+        else{ 
+          // toaster.setMessage('Both Password not matched');
+          this.navCtrl.setRoot(SignupFormPage);
+          toaster.present();
+        }
+      })
+      }
+    
+    // if(this.newuser.level=="seller"){
+    //   this.navCtrl.setRoot(Tab1Page);
+    // }
+    // else{
+    //   this.navCtrl.push(TabsPage);
+    // }
+  
+  }
+      
+  login(){
+    this.navCtrl.push(LoginPage);
+  }
+
+  // getTrustImg(imageUrl) {  //function untuk read url from local string
+  //   let path = this.win.Ionic.WebView.convertFileSrc(imageUrl);
+  //   console.log(path);
+  //   return path;
+  // }
+
+  async takePhoto() {
+    try {
+      const options: CameraOptions = {
+
+        quality: 50,
+        targetHeight: 600,
+        targetWidth: 600,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
+        saveToPhotoAlbum: true,
+      }
+
+      const result = await this.camera.getPicture(options)
+      const profilepictures = storage().ref('profilepictures/photo');
+      const image = `data:image/jpeg;base64,${result}`;
+      profilepictures.putString(image, 'imageUrl');
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
+
+
+
+  async selectPicture() {
+    try {
+      const optionsGallery: CameraOptions = {
+
+        quality: 50,
+        targetHeight: 600,
+        targetWidth: 600,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
+        saveToPhotoAlbum: true,
+      }
+
+      const result = await this.camera.getPicture(optionsGallery)
+      const profilepictures = storage().ref('profilepictures/photo');
+      const image = `data:image/jpeg;base64,${result}`;
+      profilepictures.putString(image, 'imageUrl');
+    }
+    catch (e) {
+      console.error(e);
+
+    }
+  }
+
+}
+
+  

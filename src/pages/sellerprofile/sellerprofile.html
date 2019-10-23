@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="steelblue">
+    <ion-title text-center >Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="onLogout()">Logout
+      </button>
+    </ion-buttons>
+    <!-- <button (click)='onLogout()' right> Logout </button> -->
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+          <!-- <img class="img" [src]="imageUrl"> -->
+      </ion-avatar>
+    </ion-item>
+    
+  </ion-card>
+  
+  <ion-list>
+      <ion-item detail-push (click)="editprofile()">My Profile</ion-item>
+      <ion-item (click)="myshop()">My Shop <a align-text-right></a></ion-item>
+  </ion-list>
+</ion-content>

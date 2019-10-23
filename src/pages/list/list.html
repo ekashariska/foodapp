@@ -1,0 +1,54 @@
+<ion-split-pane content-id="menu-content">
+  <!--  our side menu  -->
+  <ion-header>
+    <ion-navbar color="steelblue">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title text-center>List of Menu</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding>
+    <ion-list>
+      <ion-card>
+        <ion-item-sliding *ngFor="let item of menu" class="border-bottom">
+          <ion-list>
+            <ion-item *ngFor="let item of imageCollection; let i = index; trackBy:index">
+              <img src=item.URL width="180px" class="padding" />
+            </ion-item>
+          </ion-list>
+          <ion-item detail lines="full">
+            <img class="image" [src]="item.imageurl">
+            <h2><b>{{item.menuname}}</b></h2>
+          <h5>Description: {{item.menudesc}}</h5>
+          <p>Price: {{item.menuprice}}</p>
+             <br>
+            <ion-row>
+                <ion-col>
+                  Quantity: {{item.quantity}}
+                </ion-col>
+                <ion-col>
+                </ion-col> 
+                <ion-col center text-center>
+                  <ion-note>
+                    {{item.time}}
+                  </ion-note>
+                </ion-col>
+              </ion-row>
+          </ion-item>
+
+          <ion-item-options side="right" (ionSwipe)="edit(item.key)">
+            <button ion-button expandable (click)="edit(item.key)">EDIT
+              <ion-icon name="star"></ion-icon>
+            </button>
+            <button color="danger" ion-button expandable (click)="delete(item.key)">DELETE
+              <ion-icon name="star"></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+
+</ion-split-pane>

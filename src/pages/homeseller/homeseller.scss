@@ -1,0 +1,11 @@
+page-homeseller {
+  ion-col {
+    padding: 0;
+  }
+
+  @media screen and (max-width: 500px) {
+    .image{
+      height: 200px;
+    }
+  }
+}

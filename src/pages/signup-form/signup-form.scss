@@ -1,0 +1,43 @@
+page-signup-form {
+    .passwordIcon{
+        font-size:2rem !important;
+        position: relative !important;
+        top: 22px !important;
+        margin: 0 auto !important;
+     }
+   .var{
+    color:#000;
+    position:absolute;
+    left:15%;
+   }
+
+   .password-toggle{
+    background-color: transparent;
+    color: black;
+    font-size: 20px;
+    opacity: 1;
+    box-shadow: none;
+  }
+  
+  .action-btn {
+    border-radius: 5px;
+  }
+
+  .register-box {
+    margin-top: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(206, 204, 204);
+    // padding-bottom: 5rem;
+  }
+
+  #password-icon {
+    font-size: 1.8em; //Preferred size here
+  }
+
+  .invalidTxt {
+    font-size: 0.8em;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+  }
+}

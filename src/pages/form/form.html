@@ -1,0 +1,106 @@
+<ion-header>
+
+  <ion-navbar color="steelblue">
+    <ion-title text-center>New Menu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup]="menuForm">
+    <ion-list lines>
+
+      <ion-item>
+        <ion-label floating>Menu Name</ion-label>
+        <ion-input formControlName="menuname"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Menu Price</ion-label>
+        <ion-input formControlName="menuprice"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea formControlName="menudesc" rows="5"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Quantity Available</ion-label>
+        <ion-input formControlName="quantity" type="number"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left block outline type="button" (click)="onTakePhoto()">
+            <ion-icon name="camera"></ion-icon>Open Camera
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left block outline type="button" (click)="onOpenGallery()">
+            <ion-icon name="camera"></ion-icon>Open Gallery
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row>
+        <ion-col>
+          <div *ngIf="browser">
+              <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+          </div>
+        </ion-col>
+      </ion-row> -->
+
+      <!-- <p><img src= "{{imageUrl}}"></p> -->
+
+
+      <ion-row *ngIf="imageIsSet" class="img-container">
+        <ion-col>
+          <!-- <img class="img" [src]="getTrustImg(imageUrl)"> -->
+          <img class="img" [src]="imageUrl">
+        </ion-col>
+      </ion-row>
+
+      <!-- <ion-row *ngIf="isImageCaptured">
+        <ion-col>
+          <img class="img" [src]="getTrustImg(imageUrl)">
+          <img class="img" [src]="imageUrl">
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+
+    <!-- <ion-row> 
+      <ion-col>
+        {{date}}
+      </ion-col>
+    </ion-row>
+
+    <ion-row> 
+      <ion-col>
+        {{dateNew}}
+      </ion-col>
+    </ion-row> -->
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center">
+        <button ion-button round color="steelblue" class="btn" type="submit" (click)="onSubmit()">SUBMIT</button>
+      </ion-col>
+      <ion-col style="text-align: center">
+        <button ion-button round class="btn" color="steelblue" (click)="onCancel()">CANCEL</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-footer>
