@@ -1,0 +1,72 @@
+<ion-content padding>
+  
+    <ion-header *ngFor="let item of menu">
+      <ion-navbar color="steelblue">
+        <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title >
+          {{item.menuname}}
+        </ion-title>
+      </ion-navbar>
+    </ion-header>
+    
+    
+    <ion-content>
+          <ion-card *ngFor="let item of menu">
+              <div>
+                <!-- {{item.imageurl}} -->
+                <img class="image" [src]="item.imageurl">
+               </div>
+                <div>
+                  <br>
+               <b>Menu name:</b> {{item.menuname}}
+              </div>
+              <div>
+                <br>
+               <b>Price:</b> {{item.menuprice}}
+              </div>
+              <div>
+                <br>
+                <b>Description:</b> {{item.menudesc}}
+               </div>
+              </ion-card>
+       
+    
+          <ion-row padding->
+            <ion-col>
+              <h4>
+                  Quantity
+              </h4>  
+            </ion-col>
+            <ion-col class="qty" text-right>
+                <button (click)="decreaseMenuCount()" ion-button small color="light">
+                  -
+                </button>
+                <button ion-button small clear color="dark">
+                  {{menuCount}}
+                </button>
+                <button (click)="incrementMenuCount()" ion-button small color="light">
+                  +
+                </button>
+              </ion-col>
+          </ion-row>
+    
+    </ion-content>
+    
+    <ion-footer class="single-footer">
+        
+        <ion-grid>
+          <ion-row>
+             <ion-col class="addCart" (click)="addToCart(menu)">
+               <button ion-button round block color="steelblue">
+                 ADD TO CART
+               </button>          
+      
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        
+      </ion-footer>
+  
+  </ion-content>

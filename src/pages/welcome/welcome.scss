@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Aladin");
+page-welcome {
+    h1{
+        position: absolute;
+        display:block;
+        color: #F1D2F0;
+        top:28%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        width:100%;
+
+      }
+
+    .head h1{
+            font-weight: lighter!important;
+            font-size: 8vh!important;
+            font-family: 'Aladin', cursive;
+        }
+
+    .colorbg {
+        height:100%;
+        width:100%;
+        background-image: linear-gradient(to right top, #845EC2,#2C73D2 ,#0081CF,#008E9B, #008F7A);
+    }
+   
+    button {
+        position:absolute;
+        display:block;
+        top: 50%;
+        top: 50%;
+        background: STEELBLUE !important;
+        border: 1px solid #fff;
+        box-shadow: 0px;
+        color: white !important;
+          }
+
+    .foot{
+        position:absolute;
+        transform:translate(-50%,-50%);
+    }
+
+   
+}
